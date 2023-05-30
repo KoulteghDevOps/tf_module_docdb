@@ -53,3 +53,10 @@ resource "aws_docdb_cluster" "main" {
   vpc_security_group_ids          = [aws_security_group.main.id]
   tags                            = merge(var.tags, { Name = "${var.name}-${var.env}-dc" })
 }
+
+resource "aws_docdb_cluster_instance" "cluster_instances" {
+  count              = var.instance_count
+  identifier         = "${var.name}-${var.env}"  #"docdb-cluster-demo-${count.index}"
+  cluster_identifier = aws_docdb_cluster.main.id
+  instance_class     = var.instance_class #"db.r5.large"
+}

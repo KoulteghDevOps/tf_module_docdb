@@ -11,3 +11,5 @@ variable "kms_arn" {}
 variable "port_number" {
   default = 27017
 }
+variable "instance_count" {}
+variable "instance_class" {}
